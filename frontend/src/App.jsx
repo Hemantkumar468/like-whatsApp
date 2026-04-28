@@ -4,7 +4,16 @@ import { io } from 'socket.io-client';
 import { setInitialMessages, addMessage, setUsername } from './features/chatSlice';
 import { Send, User, MessageCircle } from 'lucide-react';
 
-const socket = io('http://localhost:3001');
+// const socket = io('http://localhost:3001');
+const API_URL =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:3001"
+    : import.meta.env.VITE_API_URL;
+
+const socket = io(API_URL);
+
+
+// const socket = io(import.meta.env.VITE_API_URL);
 
 function App() {
   const dispatch = useDispatch();
